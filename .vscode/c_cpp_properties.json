@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "compilerPath": "L:/Common/mingw-w64/7.3.0/mingw64/bin/g++.exe",
+            "includePath": [
+                "${workspaceFolder}",
+                "L:/Common/mingw-w64/7.3.0/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++",
+                "D:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
