@@ -19,5 +19,8 @@ void Action::setEllapsedTime(sf::Int32 time_elapsed) {
 }
 
 void Action::movePlayer(Elements& _elements) {
-    elements.getPlayer().update(time_elapsed);
+    sf::Vector2f next = elements.getPlayer().nextMovement(time_elapsed);
+    //Only check if there is a collision
+    resolvePlayerCollision(next);
+    elements.getPlayer().move(next);
 }

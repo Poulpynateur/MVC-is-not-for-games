@@ -15,6 +15,7 @@ private:
 public:
     Elements(sf::Vector2u windowSize);
     Player& getPlayer();
+    Static& getObstacle();
 };
 
 Elements::Elements(sf::Vector2u windowSize) {
@@ -29,5 +30,6 @@ void Elements::draw(sf::RenderTarget &renderTarget, sf::RenderStates renderState
 }
 
 Player& Elements::getPlayer() {
-    return player;
-}
+    return player;}
+Static& Elements::getObstacle() {
+    return obstacle;}
