@@ -1,35 +1,47 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
-#include "Static.cpp"
+#include "Object.cpp"
 #include "Dynamic.cpp"
 #include "Player.cpp"
 
-class Elements : public sf::Drawable {
+class Elements {
 private:
+    sf::Vector2u windowSize;
     Player player;
-    Static obstacle;
-
-    virtual void draw(sf::RenderTarget &renderTarget, sf::RenderStates renderStates) const;
+    std::vector<Object> map;
 public:
     Elements(sf::Vector2u windowSize);
+
+    void refresh(sf::RenderTarget &renderTarget);
+
     Player& getPlayer();
-    Static& getObstacle();
+    std::vector<Object>& getMap();
 };
 
-Elements::Elements(sf::Vector2u windowSize) {
-    player.setFillColor(sf::Color::Green);
-    obstacle.setPosition(windowSize.x/2, windowSize.y/2);
+Elements::Elements(sf::Vector2u windowSize) : windowSize(windowSize) {
+    player.setPosition(windowSize.x/2, 0);
+
+    srand (time(NULL));
+    for(int i=0; i<1000; i++) {
+        Object object(rand() % 40 + 10);
+        object.setPosition(rand()%windowSize.x, rand()%windowSize.y);
+        map.push_back(object);
+
+    }
 }
 
-//Temporary
-void Elements::draw(sf::RenderTarget &renderTarget, sf::RenderStates renderStates) const {
-    renderTarget.draw(player);
-    renderTarget.draw(obstacle);
+void Elements::refresh(sf::RenderTarget &renderTarget) {
+    for(unsigned int i=0; i<map.size(); i++) {
+        renderTarget.draw(map[i].refresh());
+    }
+    renderTarget.draw(player.refresh());
 }
 
 Player& Elements::getPlayer() {
     return player;}
-Static& Elements::getObstacle() {
-    return obstacle;}
+std::vector<Object>& Elements::getMap() {
+    return map;}
