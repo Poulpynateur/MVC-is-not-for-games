@@ -8,7 +8,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Balls, balls, balls.");
     
     //Game objects
     Elements elements(window.getSize());
@@ -19,12 +19,14 @@ int main()
     while (window.isOpen()) {
         logic.keyEvents(clock.restart().asMilliseconds());
         logic.movePlayer();
+        logic.playerShoot();
 
         //render
         window.clear();
         elements.refresh(window);
         window.display();
 
+        //std::cout << elements.getProjectiles().size() << '\n';
         std::cout << clock.getElapsedTime().asMilliseconds() << '\n';
     }
 

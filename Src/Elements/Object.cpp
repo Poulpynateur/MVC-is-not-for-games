@@ -4,11 +4,16 @@
 class Object : public sf::CircleShape {
 protected:
     bool collision = false;
+    sf::Int32 action_timer;
+
     virtual void onCollision();
     virtual void afterCollision();
 public:
     Object(float radius);
-
+    /**
+     * Refresh object aspect
+     * Call it after logic
+     * */
     Object& refresh();
 
     bool checkCollision(Object& object);
@@ -25,7 +30,7 @@ Object& Object::refresh() {
     else
         afterCollision();
 
-    collision = false;
+    this->collision = false;
     return *this;
 }
 
@@ -36,14 +41,14 @@ bool Object::checkCollision(Object& object) {
 
     bool _collision = (distance <= radius)? true : false;
 
-    this->setCollision(_collision);
+    setCollision(_collision);
     object.setCollision(_collision);
     return collision;
 }
 
 void Object::setCollision(bool _collision) {
-    if(_collision != false && collision != true)
-        collision = _collision;
+    if(_collision != false && this->collision != true)
+        this->collision = _collision;
 }
 
 void Object::onCollision() {
