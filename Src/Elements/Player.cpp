@@ -4,42 +4,20 @@
 
 class Player : public Dynamic {
 private:
-    //Delay between shoots (in ms)
-    float fire_delay;
-
-    void onCollision();
-    void afterCollision();
+    //Number of frame between two shoots
+    unsigned int fire_rate;
 public:
     Player();
-
-    void refreshActionTimer(sf::Int32 time_elapsed);
-    bool canShoot();
+    bool canShoot(unsigned int frame_number);
 };
 
 Player::Player() : Dynamic(20) {
-    this->setFillColor(sf::Color::Green);
-
-    action_timer = 0;
-    fire_delay = 100;
-}
-
-void Player::refreshActionTimer(sf::Int32 time_elapsed) {
-    movement.x = 0;
-    movement.y = 0;
-    action_timer += time_elapsed;}
-
-bool Player::canShoot() {
-    if(action_timer >= fire_delay) {
-        action_timer = 0;
-        return true;
-    } else {
-        return false;
-    }
-}
-
-void Player::onCollision() {
-    this->setFillColor(sf::Color::Magenta);
-}
-void Player::afterCollision() {
+    fire_rate = 10;
+    speed = 3;
     this->setFillColor(sf::Color::Green);
 }
+
+bool Player::canShoot(unsigned int frame_number) {
+    return (frame_number % fire_rate == 0)? true : false;
+}
+
