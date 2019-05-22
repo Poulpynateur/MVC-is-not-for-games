@@ -4,35 +4,28 @@
 #include <iostream>
 
 #include "Src/GameLogic.cpp"
-#include "Src/Elements.cpp"
+#include "Src/Elements/Elements.cpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "Balls & shoot");
-    window.setFramerateLimit(60);
-
+    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    
     //Game objects
     Elements elements(window.getSize());
     //Game logic
-    GameLogic logic;
+    GameLogic logic(elements);
 
     sf::Clock clock;
     while (window.isOpen()) {
-        logic.initLoop();
-        logic.keyEvents();
+        logic.keyEvents(clock.restart().asMilliseconds());
+        logic.movePlayer();
 
-        logic.playerMove(elements.getPlayer());
-        logic.playerShoot(elements.getPlayer(), elements.getProjectiles());
-
-        logic.projectilesMove(elements.getProjectiles(), elements.getMap());
-        /**
-         * Render
-         * */
+        //render
         window.clear();
         elements.refresh(window);
         window.display();
 
-        //std::cout << clock.restart().asMilliseconds() << '\n';
+        std::cout << clock.getElapsedTime().asMilliseconds() << '\n';
     }
 
     return 0;

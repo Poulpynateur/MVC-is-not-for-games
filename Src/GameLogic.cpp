@@ -1,59 +1,45 @@
 #pragma once
-#include "Elements.cpp"
+#include "Elements/Elements.cpp"
 #include <cmath>
 
 class GameLogic {
 private:
-    sf::Vector2f key_direction;
-    unsigned int frame_number;
+    Elements& elements;
+    sf::Int32 time_elapsed;
 public:
-    GameLogic() : frame_number(0) {};
+    GameLogic(Elements& _elements);
 
-    void initLoop();
+    void keyEvents(sf::Int32 _time_elapsed);
 
-    void keyEvents();
-    void playerMove(Player& player);
-    void playerShoot(Player& player, std::vector<Bullet>& projectiles);
-
-    void projectilesMove(std::vector<Bullet>& projectiles, std::vector<Object>& map);
+    void movePlayer();
 };
 
-void GameLogic::initLoop() {
-    key_direction = sf::Vector2f();
-    frame_number ++;
-}
+GameLogic::GameLogic(Elements& _elements) :
+elements(_elements)
+{}
 
-void GameLogic::keyEvents() {
+void GameLogic::keyEvents(sf::Int32 _time_elapsed) {
+    //For time dependant movements
+    this->time_elapsed = (_time_elapsed==0)? 1 : _time_elapsed;   
+    
+    //Player
+    elements.getPlayer().getMovement() = sf::Vector2f(0,0);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        key_direction.x = -1;
+        elements.getPlayer().getMovement().x = -1*time_elapsed;
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        key_direction.x = 1;
+        elements.getPlayer().getMovement().x = 1*time_elapsed;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        key_direction.y = -1;
+        elements.getPlayer().getMovement().y = -1*time_elapsed;
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        key_direction.y = 1;
+        elements.getPlayer().getMovement().y = 1*time_elapsed;
 }
 
-void GameLogic::playerMove(Player& player) {
-    player.move(key_direction);
-}
-void GameLogic::playerShoot(Player& player, std::vector<Bullet>& projectiles) {
-    if((key_direction.x != 0 || key_direction.y != 0) && player.canShoot(frame_number)) {
-        projectiles.push_back(Bullet(key_direction * -1.0f, player.getPosition(), frame_number));
+void GameLogic::movePlayer() {
+    for(unsigned int i=0; i<elements.getMap().size(); i++) {
+        //getPlayer return Player& object
+        elements.getPlayer().checkCollision(elements.getMap()[i]);
     }
-}
 
-void GameLogic::projectilesMove(std::vector<Bullet>& projectiles, std::vector<Object>& map) {
-    for(unsigned int i(0); i < projectiles.size(); i++) {
-        if(projectiles[i].isDead(frame_number)) {
-            projectiles.erase(projectiles.begin() + i);
-        }
-        else {
-            projectiles[i].move();
-            for(unsigned int j(0); j < map.size(); j++) {
-                if(projectiles[i].checkCollision(map[j]))
-                    projectiles.erase(projectiles.begin() + i);
-            }
-        }
-    }
+
+    elements.getPlayer().move();
 }

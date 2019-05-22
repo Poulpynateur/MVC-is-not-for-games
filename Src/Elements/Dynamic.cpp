@@ -5,24 +5,28 @@
 class Dynamic : public Object
 {
 protected:
-    //In pixel per frame
-    float speed;
+    //In pixel per milliseconds
+    const sf::Vector2f gravity = sf::Vector2f(0, 0);
+    float speed = 0.5;
+
     sf::Vector2f movement;
 public:
-    Dynamic(float radius, sf::Vector2f _movement);
-
-    //Move with a given vector
-    void move(sf::Vector2f movement);
+    Dynamic(float radius);
+    
     void move();
+    sf::Vector2f& getMovement();
 };
 
-Dynamic::Dynamic(float radius, sf::Vector2f _movement = sf::Vector2f())
-: Object(radius), movement(_movement) {
+Dynamic::Dynamic(float radius) : Object(radius)
+{}
+
+/*Movement*/
+sf::Vector2f& Dynamic::getMovement() {
+    return this->movement;
 }
 
-void Dynamic::move(sf::Vector2f _movement) {
-    sf::CircleShape::move(_movement * speed);
-}
 void Dynamic::move() {
-    sf::CircleShape::move(movement);
+    movement.x *= speed;
+    movement.y *= speed;
+    sf::CircleShape::move(gravity + movement);
 }
