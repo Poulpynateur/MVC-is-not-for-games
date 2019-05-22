@@ -1,60 +1,33 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <vector>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#include "Elements/Object.cpp"
-#include "Elements/Dynamic.cpp"
-#include "Elements/Player.cpp"
-#include "Elements/Bullet.cpp"
+#include <SFML/Graphics.hpp>
+#include "Objects/Object.cpp"
 
-#define STATIC_OBJECT_NBR 10
+#define OBJECT_NBR 1000
 
 class Elements {
 private:
-    sf::Vector2u windowSize;
-    Player player;
-    std::vector<Object> map;
-    std::vector<Bullet> projectiles;
+    std::vector<Object> objects;
 public:
-    Elements(sf::Vector2u windowSize);
+    Elements(sf::Vector2u _windowBounds);
 
-    void refresh(sf::RenderTarget &renderTarget);
-
-    Player& getPlayer();
-    std::vector<Object>& getMap();
-    std::vector<Bullet>& getProjectiles();
+    std::vector<Object>& getObjects();
 };
+/** Constructor **/
+Elements::Elements(sf::Vector2u _windowBounds) {
 
-Elements::Elements(sf::Vector2u windowSize) : windowSize(windowSize) {
-    player.setPosition(windowSize.x/2, 0);
-
-    //Generate random shapes
     srand (time(NULL));
-    for(int i=0; i<STATIC_OBJECT_NBR; i++) {
-        Object object(rand() % 40 + 10);
-        object.setPosition(rand()%windowSize.x, rand()%windowSize.y);
-        map.push_back(object);
+    for(int i=0; i<OBJECT_NBR; i++) {
+        Object object(rand() % 10 + 5, sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
+        object.updatePosition(rand()%_windowBounds.x, rand()%_windowBounds.y);
+        objects.push_back(object);
     }
 }
 
-void Elements::refresh(sf::RenderTarget &renderTarget) {
-    for(unsigned int i(0); i<map.size(); i++) {
-        renderTarget.draw(map[i]);
-    }
-    for(unsigned int i(0); i<projectiles.size(); i++) {
-        renderTarget.draw(projectiles[i]);
-    }
-    renderTarget.draw(player);
-}
-
-Player& Elements::getPlayer() {
-    return player;
-}
-std::vector<Object>& Elements::getMap() {
-    return map;
-}
-std::vector<Bullet>& Elements::getProjectiles() {
-    return projectiles;
+/** Getters and Setters **/
+std::vector<Object>& Elements::getObjects() {
+    return objects;
 }

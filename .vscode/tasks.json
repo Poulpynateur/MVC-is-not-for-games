@@ -8,15 +8,14 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "Game.cpp",
+                "main.cpp",
                 "-Wall","-g",
-                "-o","bin/game.exe",
+                "-o","bin/main.exe",
 
                 "-ID:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/include",
-                "-LD:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/lib",               
+                "-LD:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/lib",
+                
                 "-lsfml-graphics","-lsfml-window","-lsfml-system",
-                "-lopengl32",
-                "-lglu32", 
             ],
             "group": {
                 "kind": "build",
