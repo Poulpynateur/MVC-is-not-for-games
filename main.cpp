@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 
-#include "Src/Inputs.cpp"
-#include "Src/Elements.cpp"
-#include "Src/Render.cpp"
-#include "Src/Logic.cpp"
+#include "src/Inputs.cpp"
+#include "src/Elements.cpp"
+#include "src/Render.cpp"
+#include "src/Logic.cpp"
 
 #include <iostream>
 
@@ -29,14 +29,14 @@ int main()
     int update_number;
     float interpolation;
 
-    while (inputs->getGameState() == 1)
+    while (logic->getGameState() != -1)
     {
-        InputsList& inputsList = inputs->get();
+        logic->setInputList(inputs->process());
 
         update_number = 0;
         while (clock.getElapsedTime().asMilliseconds() > next_update_time && update_number < MAX_FRAMESKIP)
         {
-            logic->update(elements->getObjects(), inputsList);
+            logic->update(elements->getObjects());
 
             next_update_time += UPDATE_INTERVAL;
             update_number++;

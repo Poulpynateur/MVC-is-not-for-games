@@ -10,27 +10,12 @@ struct InputsList {
 
 class Inputs {
 private:
-    unsigned int game_state;
     InputsList list;
 public:
-    Inputs() {
-        game_state = 1;
-    };
-    unsigned int getGameState();
-    InputsList& get();
-
-    void refresh();
+    InputsList& process();
 };
 
-unsigned int Inputs::getGameState() {
-    return game_state;
-}
-
 //Return all pressed inputs
-InputsList& Inputs::get() {
+InputsList& Inputs::process() {
     return list;
-}
-
-//Refresh inputs
-void Inputs::refresh() {
 }

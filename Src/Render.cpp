@@ -1,15 +1,5 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include "Objects/Object.cpp"
+#include "Render.hpp"
 
-class Render {
-private:
-    sf::RenderWindow window;
-public:
-    Render(unsigned int width, unsigned int heigth);
-
-    void display(std::vector<Object>& objects, float interpolation);
-};
 /** Constructor **/
 Render::Render(unsigned int width, unsigned int heigth) : window(sf::VideoMode(width, heigth), "Game")
 {};
