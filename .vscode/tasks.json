@@ -4,21 +4,6 @@
         {
             "label": "build",
             "type": "shell",
-<<<<<<< Updated upstream
-            "command": "g++",
-            "args": [
-                "Game.cpp",
-                "-Wall","-g",
-                "-o","bin/game.exe",
-
-                "-ID:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/include",
-                "-LD:/Perso/Informatique/CPP/_Includes/SFML-2.5.1/lib",               
-                "-lsfml-graphics","-lsfml-window","-lsfml-system",
-                "-lopengl32",
-                "-lglu32", 
-            ],
-=======
->>>>>>> Stashed changes
             "group": {
                 "kind": "build",
                 "isDefault": true
