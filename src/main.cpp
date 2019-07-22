@@ -1,24 +1,46 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+#include "Game/World.hpp"
+#include "Game/Render.hpp"
+#include "Game/Logic.hpp"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Render::resolution = sf::Vector2u(800, 800);
 
-    while (window.isOpen())
+    const int UPDATE_PER_SECOND = 25;
+    const int UPDATE_INTERVAL = 1000/UPDATE_PER_SECOND;
+    const int MAX_FRAMESKIP = 5;
+
+    Inputs inputs = Inputs();
+    World world = World();
+    Render render = Render();
+    Logic logic = Logic();
+
+    sf::Clock clock;
+    
+    double next_update_time = clock.getElapsedTime().asMilliseconds();
+    int update_number;
+    float interpolation;
+
+    //Check "loop sequencing patern" for more
+    while (logic.getGameState() != -1)
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        inputs.process();
+
+        update_number = 0;
+        while (clock.getElapsedTime().asMilliseconds() > next_update_time && update_number < MAX_FRAMESKIP)
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            logic.update(world);
+
+            next_update_time += UPDATE_INTERVAL;
+            update_number++;
         }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        interpolation = float(clock.getElapsedTime().asMilliseconds() + UPDATE_INTERVAL - next_update_time)/float(UPDATE_INTERVAL);
+        render.display(world.getObjects(), interpolation);
     }
-
+    
     return 0;
 }
