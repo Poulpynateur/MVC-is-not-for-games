@@ -1,22 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "Game/World.hpp"
-#include "Game/Render.hpp"
-#include "Game/Logic.hpp"
+#include "Game/Controller.hpp"
 
 int main()
 {
-    Render::resolution = sf::Vector2u(800, 800);
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Game");
 
     const int UPDATE_PER_SECOND = 25;
     const int UPDATE_INTERVAL = 1000/UPDATE_PER_SECOND;
     const int MAX_FRAMESKIP = 5;
 
-    Inputs inputs = Inputs();
-    World world = World();
-    Render render = Render();
-    Logic logic = Logic();
+    Controller controller(window.getSize());
 
     sf::Clock clock;
     
@@ -25,21 +20,21 @@ int main()
     float interpolation;
 
     //Check "loop sequencing patern" for more
-    while (logic.getGameState() != -1)
+    while (window.isOpen())
     {
-        inputs.process();
+        controller.input();
 
         update_number = 0;
         while (clock.getElapsedTime().asMilliseconds() > next_update_time && update_number < MAX_FRAMESKIP)
         {
-            logic.update(world);
+            controller.logic();
 
             next_update_time += UPDATE_INTERVAL;
             update_number++;
         }
 
         interpolation = float(clock.getElapsedTime().asMilliseconds() + UPDATE_INTERVAL - next_update_time)/float(UPDATE_INTERVAL);
-        render.display(world.getObjects(), interpolation);
+        controller.render(window, interpolation);
     }
     
     return 0;

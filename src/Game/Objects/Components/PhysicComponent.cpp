@@ -1,23 +1,22 @@
 #include "PhysicComponent.hpp"
 
-void PhysicComponent::update(Object& object) {
+void PhysicComponent::update(Object& object,  sf::Vector2u& bounds) {
 
     sf::Vector2f pos = object.getPosition();
-    sf::Vector2u windowBounds = Render::resolution;
 
-    if(pos.x > windowBounds.x) {
-        object.setCoord(0, pos.y);
+    if(pos.x > bounds.x) {
+        object.setPosition(0, pos.y);
     }
-    else if(pos.y > windowBounds.y) {
-        object.setCoord(pos.x, 0);
+    else if(pos.y > bounds.y) {
+        object.setPosition(pos.x, 0);
     }
     else if(pos.x < 0) {
-        object.setCoord(windowBounds.x, pos.y);
+        object.setPosition(bounds.x, pos.y);
     }
     else if(pos.y < 0) {
-        object.setCoord(pos.x, windowBounds.y);
+        object.setPosition(pos.x, bounds.y);
     }
     else {
-        object.moveCoord();
+        object.move();
     }
 }

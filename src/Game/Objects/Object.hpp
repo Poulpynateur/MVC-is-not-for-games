@@ -1,28 +1,30 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include "Components/PhysicComponent.hpp"
 #include "../World.hpp"
 
-class Object : public sf::CircleShape {
-private:
+/**
+ * More like dynamic than object but oh well
+ */
 
-    sf::Vector2f coord;
+class Object {
+private:
+    sf::Vector2f position;
     //Pixel to move each update
-    sf::Vector2f movement;
-    
-    PhysicComponent physic;
+    sf::Vector2f speed;
+
+    sf::CircleShape shape;
 
 public:
-    Object(float radius, sf::Vector2f _movement);
+    Object(float radius, sf::Vector2f _speed);
 
-    sf::Vector2f getCoord();
-    void setCoord(float x, float y);
-    void moveCoord();
+    sf::Vector2f getPosition();
+    void setPosition(float x, float y);
+    void move();
 
     //Refresh display to render
-    Object& refresh(float interpolation);
+    sf::Drawable& render(float interpolation);
 
     //Refresh logic of the element (? Handle tume)
-    void update(World& world);
+    virtual void update(World& world);
 };

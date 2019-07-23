@@ -1,28 +1,24 @@
 #include "Object.hpp"
 
 /** Constructor **/
-Object::Object(float radius, sf::Vector2f _movement)
-: sf::CircleShape(radius), coord(0,0), movement(_movement) 
+Object::Object(float radius, sf::Vector2f _speed)
+: position(0,0), speed(_speed), shape(radius)
 {}
 
 /** Getters and Setters **/
-sf::Vector2f Object::getCoord() {
-    return coord;
+sf::Vector2f Object::getPosition() {
+    return position;
 }
 
-void Object::setCoord(float x, float y) {
-    coord.x = x;
-    coord.y = y;
+void Object::setPosition(float x, float y) {
+    position.x = x;
+    position.y = y;
 }
-void Object::moveCoord() {
-    coord += movement;
-}
-
-Object& Object::refresh(float interpolation) {
-    this->setPosition(coord.x + movement.x*interpolation, coord.y + movement.y*interpolation);
-    return *this;
+void Object::move() {
+    position += speed;
 }
 
-void Object::update(World& world) {
-    physic.update(*this);
+sf::Drawable& Object::render(float interpolation) {
+    shape.setPosition(position.x + speed.x*interpolation, position.y + speed.y*interpolation);
+    return shape;
 }

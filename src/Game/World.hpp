@@ -5,26 +5,30 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#include "Render.hpp"
-#include "Objects/Object.hpp"
+#include "Objects/Test.hpp"
 
 #define OBJECT_NBR 50
 
 class World {
 private:
+
+    sf::Vector2u bounds;
     std::vector<Object> objects;
+
 public:
-    World() {
-
-        sf::Vector2u windowBounds = Render::resolution;
-
+    World(sf::Vector2u _bounds) :
+    bounds(_bounds)
+    {
         srand (time(NULL));
         //Creating random objects
         for(int i=0; i<OBJECT_NBR; i++) {
-            Object object(rand() % 10 + 5, sf::Vector2f(rand() % 20 - 10, rand() % 20 - 10));
-            object.setCoord(rand()%windowBounds.x, rand()%windowBounds.y);
+            Test object(bounds);
             objects.push_back(object);
         }
+    }
+
+    sf::Vector2u& getBounds() {
+        return bounds;
     }
 
     std::vector<Object>& getObjects() {
