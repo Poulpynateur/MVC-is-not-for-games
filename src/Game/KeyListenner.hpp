@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 #include <vector>
 
-struct Inputs {
+struct KeyListenner {
 private:
     //Key to listen
     std::vector<sf::Keyboard::Key> listening = {
@@ -12,24 +12,24 @@ private:
         sf::Keyboard::Right
     };
 
-    static std::unordered_map<sf::Keyboard::Key, bool> keys;
+    std::unordered_map<sf::Keyboard::Key, bool> keys;
 
 public:
 
-    Inputs() {
+    KeyListenner() {
         for(unsigned int i=0; i<listening.size(); i++) {
             keys[listening.at(i)] = false;
         }
     }
 
-    void process() {
+    void refresh() {
         //Refresh keys states
         for(unsigned int i=0; i<listening.size(); i++) {
             keys[listening.at(i)] = sf::Keyboard::isKeyPressed(listening.at(i));
         }
     }
 
-    static std::unordered_map<sf::Keyboard::Key, bool> getKeys() {
+    std::unordered_map<sf::Keyboard::Key, bool>& getKeys() {
         return keys;
     }
 };
