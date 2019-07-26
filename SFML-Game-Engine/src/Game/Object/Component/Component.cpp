@@ -1,7 +1,7 @@
-#include "Component.h"
+#include "PhysicComponent.h"
 #include "../Object.h"
 #include "../../World.h"
 
-void Component::update(Object& object, World& world) {
+void PhysicComponent::update(Object& object, World& world) {
 	std::cout << "Object component + " + world.saidSomething() << '\n';
 }

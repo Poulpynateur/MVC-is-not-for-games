@@ -1,10 +1,11 @@
 #pragma once
+
 #include <iostream>
 
 class World;
 class Object;
 
-class Component {
+class PhysicComponent {
 public:
 	void update(Object& object, World& world);
 };

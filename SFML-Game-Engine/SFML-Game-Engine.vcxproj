@@ -90,6 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Perso\Informatique\CPP\_Includes\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,15 +129,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\Object\Component\PlayerInputs.cpp" />
+    <ClCompile Include="src\Game\Object\Player.cpp" />
     <ClCompile Include="src\Game\Object\Object.cpp" />
-    <ClCompile Include="src\Game\Object\Component\Component.cpp" />
+    <ClCompile Include="src\Game\Object\Component\PhysicComponent.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Game\Object\Component\PlayerInputs.h" />
+    <ClInclude Include="src\Game\Object\Player.h" />
     <ClInclude Include="src\Game\Controller.h" />
-    <ClInclude Include="src\Game\KeyListenner.h" />
     <ClInclude Include="src\Game\Object\Object.h" />
-    <ClInclude Include="src\Game\Object\Component\Component.h" />
+    <ClInclude Include="src\Game\Object\Component\PhysicComponent.h" />
     <ClInclude Include="src\Game\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
