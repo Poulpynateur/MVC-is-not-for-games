@@ -3,9 +3,9 @@
 #include <iostream>
 
 class World;
-class Object;
+class Dynamic;
 
 class PhysicComponent {
 public:
-	void update(Object& object, World& world);
+	void update(Dynamic& object, World& world);
 };

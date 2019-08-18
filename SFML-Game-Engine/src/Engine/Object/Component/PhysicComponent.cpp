@@ -1,8 +1,8 @@
 #include "PhysicComponent.h"
-#include "../Object.h"
+#include "../Dynamic.h"
 #include "../../World.h"
 
-void PhysicComponent::update(Object& object, World& world) {
+void PhysicComponent::update(Dynamic& object, World& world) {
 
 	sf::Vector2f pos = object.getPos();
 	sf::Vector2u windowBounds = world.getBounds();

@@ -129,19 +129,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Game\Object\Component\PlayerInputs.cpp" />
-    <ClCompile Include="src\Game\Object\Player.cpp" />
-    <ClCompile Include="src\Game\Object\Object.cpp" />
-    <ClCompile Include="src\Game\Object\Component\PhysicComponent.cpp" />
+    <ClCompile Include="src\Game\Bullet.cpp" />
+    <ClCompile Include="src\Engine\Object\Dynamic.cpp" />
+    <ClCompile Include="src\Game\Component\PlayerInputs.cpp" />
+    <ClCompile Include="src\Game\Player.cpp" />
+    <ClCompile Include="src\Engine\Object\Object.cpp" />
+    <ClCompile Include="src\Engine\Object\Component\PhysicComponent.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Game\Object\Component\PlayerInputs.h" />
-    <ClInclude Include="src\Game\Object\Player.h" />
-    <ClInclude Include="src\Game\Controller.h" />
-    <ClInclude Include="src\Game\Object\Object.h" />
-    <ClInclude Include="src\Game\Object\Component\PhysicComponent.h" />
-    <ClInclude Include="src\Game\World.h" />
+    <ClInclude Include="src\Game\Bullet.h" />
+    <ClInclude Include="src\Engine\Object\Dynamic.h" />
+    <ClInclude Include="src\Game\Component\PlayerInputs.h" />
+    <ClInclude Include="src\Game\Player.h" />
+    <ClInclude Include="src\Engine\Controller.h" />
+    <ClInclude Include="src\Engine\Object\Object.h" />
+    <ClInclude Include="src\Engine\Object\Component\PhysicComponent.h" />
+    <ClInclude Include="src\Engine\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

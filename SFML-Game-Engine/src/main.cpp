@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "Game/Controller.h"
+#include "Engine/Controller.h"
 
 int main()
 {
@@ -20,6 +20,7 @@ int main()
 	double next_update_time = clock.getElapsedTime().asMilliseconds();
 	int update_number;
 	float interpolation;
+	sf::Int32 time;
 
 	//Check "loop sequencing patern" for more
 	while (window.isOpen())
@@ -30,7 +31,7 @@ int main()
 		update_number = 0;
 		while (clock.getElapsedTime().asMilliseconds() > next_update_time && update_number < MAX_FRAMESKIP)
 		{
-			controller.logic();
+			controller.logic(clock.getElapsedTime().asMilliseconds());
 
 			next_update_time += UPDATE_INTERVAL;
 			update_number++;

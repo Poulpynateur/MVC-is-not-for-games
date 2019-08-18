@@ -3,26 +3,21 @@
 
 #include <unordered_map>
 
+#include "Object.h"
 #include "Component/PhysicComponent.h"
 
 class World;
 
-class Object {
+class Dynamic : public Object {
 protected:
 
-	sf::Vector2f position;
 	//Pixel to move each update
 	sf::Vector2f speed;
-	
-	sf::CircleShape shape;
-
 	PhysicComponent* physic;
 
 public:
-	Object(float radius, sf::Vector2f _movement, PhysicComponent* _physic);
-
-	sf::Vector2f getPos();
-	void setPos(float x, float y);
+	Dynamic(sf::Shape* _shape, PhysicComponent* _physic);
+	~Dynamic();
 
 	sf::Vector2f getSpeed();
 
@@ -32,7 +27,7 @@ public:
 	void move();
 
 	//Refresh display to render
-	sf::CircleShape& refresh(float interpolation);
+	virtual sf::Shape* refresh(float interpolation);
 	//Refresh logic of the element (? Handle time)
 	virtual void update(World& world);
 };
