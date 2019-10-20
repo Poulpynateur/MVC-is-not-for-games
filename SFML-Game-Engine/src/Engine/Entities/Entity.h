@@ -3,33 +3,22 @@
 #include <SFML/Graphics.hpp>
 
 /*
-	Define the very basic of the objects
+	Define the very basic of elements of the game
 */
 
 class World;
 
 class Entity {
 protected:
-	bool isDismised;
 
-	sf::Vector2f position;
-	sf::Shape* shape;
+	bool dismised;
 
 public:
-	Entity(sf::Shape* _shape);
-	Entity(sf::Shape* _shape, sf::Vector2f _position);
-	~Entity();
+	Entity();
 
 	void setDismised();
-	bool checkIfDismised();
+	bool isDismised();
 
-	sf::Vector2f getPos();
-
-	void setPos(sf::Vector2f _pos);
-	void setPos(float x, float y);
-	void setPosX(float x);
-	void setPosY(float y);
-
-	virtual sf::Shape* refresh(float interpolation);
+	virtual void refresh(sf::RenderWindow& render, float interpolation) = 0;
 	virtual void update(World* world) = 0;
 };

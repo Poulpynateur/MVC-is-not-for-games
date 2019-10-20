@@ -6,13 +6,14 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 
-#include "Entities/Entity.h"
+#include "Entities/Group.h"
+#include "Layer.h"
 
 class World {
 private:
 	sf::Int32 clock;
 
-	std::vector<Entity*> entities;
+	std::vector<Group*> layers;
 
 public:
 
@@ -22,8 +23,6 @@ public:
 	sf::Int32& getClock();
 	void setClock(const sf::Int32& _clock);
 
-	std::vector<Entity*>& getEntities();
-
-	void addEntity(Entity* entity);
-	void deleteEntity(unsigned int index);
+	std::vector<Group*>& getLayers();
+	void addEntity(Layer target_layer, Entity* entity);
 };

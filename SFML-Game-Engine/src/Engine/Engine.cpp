@@ -10,23 +10,20 @@ Engine::~Engine() {
 
 /**** METHODS ****/
 
+//Updating each layers
 void Engine::logic(const sf::Int32& time) {
 
 	world->setClock(time);
 
-	for (unsigned int i = 0; i < world->getEntities().size(); i++) {
-		Entity* entity = world->getEntities()[i];
-		entity->update(world);
-
-		if (entity->checkIfDismised())
-			world->deleteEntity(i);
+	for (unsigned int i = 0; i < world->getLayers().size(); i++) {
+		world->getLayers()[i]->update(world);
 	}
 }
 
-void Engine::render(sf::RenderWindow& window, float interpolation) {
-	window.clear();
-	for (unsigned int i = 0; i < world->getEntities().size(); i++) {
-		window.draw(*world->getEntities()[i]->refresh(interpolation));
+void Engine::render(sf::RenderWindow& render, float interpolation) {
+	render.clear();
+	for (unsigned int i = 0; i < world->getLayers().size(); i++) {
+		world->getLayers()[i]->refresh(render, interpolation);
 	}
-	window.display();
+	render.display();
 }
