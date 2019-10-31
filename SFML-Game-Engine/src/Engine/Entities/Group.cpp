@@ -2,15 +2,22 @@
 
 #include "../World.h"
 
+Group::~Group() {
+	for (auto element : childrens) {
+		delete element;
+	}
+	childrens.clear();
+}
+
 /**** GETTERS and SETTERS ****/
 std::vector<Entity*>& Group::getChildrens() {
 	return childrens;
 }
 
 /**** METHDOS ****/
-void Group::refresh(sf::RenderWindow& render, float interpolation) {
+void Group::draw(sf::RenderWindow& render, float interpolation) {
 	for (unsigned int i = 0; i < childrens.size(); i++) {
-		childrens[i]->refresh(render, interpolation);
+		childrens[i]->draw(render, interpolation);
 	}
 }
 void Group::update(World* world) {

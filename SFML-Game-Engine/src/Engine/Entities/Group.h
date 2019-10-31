@@ -14,7 +14,7 @@ public:
 
 	std::vector<Entity*>& getChildrens();
 
-	virtual void refresh(sf::RenderWindow& render, float interpolation);
+	virtual void draw(sf::RenderWindow& render, float interpolation);
 	virtual void update(World* world);
 };
 

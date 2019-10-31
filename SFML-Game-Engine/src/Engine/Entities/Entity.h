@@ -19,6 +19,6 @@ public:
 	void setDismised();
 	bool isDismised();
 
-	virtual void refresh(sf::RenderWindow& render, float interpolation) = 0;
+	virtual void draw(sf::RenderWindow& render, float interpolation) = 0;
 	virtual void update(World* world) = 0;
 };

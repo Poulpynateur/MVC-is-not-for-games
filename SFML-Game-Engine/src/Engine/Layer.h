@@ -9,5 +9,5 @@ enum Layer
 	OBJECTS,
 	BACKGROUND,
 
-	last //Only for iterating it
+	last //Only for iterating purpose
 };

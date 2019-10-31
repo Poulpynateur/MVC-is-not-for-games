@@ -11,9 +11,10 @@ World::World()
 	
 }
 World::~World() {
-	for (unsigned int i = 0; i < layers.size(); i++) {
-		delete layers[i];
+	for (auto layer : layers) {
+		delete layer;
 	}
+	layers.clear();
 }
 
 /**** GETTERS and SETTERS ****/
