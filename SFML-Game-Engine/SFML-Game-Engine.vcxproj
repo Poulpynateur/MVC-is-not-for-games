@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine\Entities\Object.cpp" />
     <ClCompile Include="src\Engine\Entities\Group.cpp" />
     <ClCompile Include="src\Engine\Engine.cpp" />
     <ClCompile Include="src\Engine\Entities\Entity.cpp" />
@@ -29,9 +28,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Entities\Object.h" />
+    <ClInclude Include="src\Game\Objects\Componants\PlayerGraphics.h" />
+    <ClInclude Include="src\Game\Objects\Componants\PlayerInputs.h" />
+    <ClInclude Include="src\Game\Objects\Componants\PlayerPhysics.h" />
+    <ClInclude Include="src\Game\Objects\Player.h" />
     <ClInclude Include="src\Engine\Entities\Group.h" />
     <ClInclude Include="src\Engine\Engine.h" />
     <ClInclude Include="src\Engine\Entities\Entity.h" />
+    <ClInclude Include="src\Engine\Layer.h" />
     <ClInclude Include="src\Engine\Layers.h" />
     <ClInclude Include="src\Game\Game.h" />
     <ClInclude Include="src\Engine\World.h" />

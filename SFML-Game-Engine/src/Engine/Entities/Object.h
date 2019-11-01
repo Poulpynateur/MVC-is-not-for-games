@@ -1,19 +1,30 @@
 #pragma once
 
 #include "Entity.h"
-#include "Components/Component.h"
-#include "Components/GraphicsComponent.h"
 
-class Object : public Entity {
-public:
-	Component* inputs;
-	Component* physic;
-	GraphicsComponent* graphics;
+template <typename ComponentInputs, typename ComponentPhysics, typename ComponentGraphics>
+struct Object : public Entity {
 
-	Object(Component* _inputs, Component* _physic, GraphicsComponent* _graphics);
-	~Object();
+	ComponentInputs* inputs;
+	ComponentPhysics* physics;
+	ComponentGraphics* graphics;
 
-	virtual void refresh(sf::RenderWindow& render, float interpolation);
-	virtual void update(World* world);
+	Object(ComponentInputs* _inputs, ComponentPhysics* _physics, ComponentGraphics* _graphics)
+		: inputs(_inputs), physics(_physics), graphics(_graphics)
+	{};
+	~Object() {
+		delete inputs;
+		delete physics;
+		delete graphics;
+	}
+
+	void draw(sf::RenderWindow& render, float interpolation) {
+		render.draw(graphics->refresh(interpolation));
+	};
+
+	void update(World* world) {
+		inputs->update(this, world);
+		physics->update(this, world);
+		graphics->update(this);
+	};
 };
-

@@ -29,3 +29,7 @@ void World::setClock(const sf::Int32& _clock) {
 void World::addEntity(Layer target_layer, Entity* entity) {
 	layers[target_layer]->getChildrens().push_back(entity);
 }
+
+std::vector<Group*>& World::getLayers() {
+	return layers;
+}

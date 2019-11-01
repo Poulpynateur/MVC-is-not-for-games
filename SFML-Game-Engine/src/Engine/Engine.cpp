@@ -23,7 +23,7 @@ void Engine::logic(const sf::Int32& time) {
 void Engine::render(sf::RenderWindow& render, float interpolation) {
 	render.clear();
 	for (unsigned int i = 0; i < world->getLayers().size(); i++) {
-		world->getLayers()[i]->refresh(render, interpolation);
+		world->getLayers()[i]->draw(render, interpolation);
 	}
 	render.display();
 }
