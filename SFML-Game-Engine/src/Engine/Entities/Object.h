@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include <iostream>
 
 template <typename ComponentInputs, typename ComponentPhysics, typename ComponentGraphics>
 struct Object : public Entity {
@@ -11,7 +12,7 @@ struct Object : public Entity {
 
 	Object(ComponentInputs* _inputs, ComponentPhysics* _physics, ComponentGraphics* _graphics)
 		: inputs(_inputs), physics(_physics), graphics(_graphics)
-	{};
+	{}
 	~Object() {
 		delete inputs;
 		delete physics;

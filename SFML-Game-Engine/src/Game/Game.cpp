@@ -14,7 +14,6 @@ Game::~Game() {
 
 World* Game::buildWorld() {
 	//Add object to the game world
-
 	world->addEntity(Layer::OBJECTS, new Player(new PlayerInputs(), new PlayerPhysics(), new PlayerGraphics()));
 
 	return world;

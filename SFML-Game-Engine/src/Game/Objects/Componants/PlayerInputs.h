@@ -2,9 +2,8 @@
 
 #include "../../EngineInclude.h"
 
+class Player;
 class PlayerInputs {
 public:
-	void update(Entity* parent, World* world) {
-		
-	};
+	void update(Player* parent, World* world);
 };

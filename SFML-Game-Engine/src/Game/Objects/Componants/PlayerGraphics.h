@@ -3,11 +3,9 @@
 #include <SFML/Graphics.hpp>
 
 class PlayerGraphics {
-private:
-
-	sf::RectangleShape* shape;
 
 public:
+	sf::RectangleShape* shape;
 
 	PlayerGraphics()
 		: shape(new sf::RectangleShape(sf::Vector2f(10,10)))
