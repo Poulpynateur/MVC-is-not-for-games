@@ -2,11 +2,16 @@
 
 #include "../Player.h"
 
+/**** METHODS ****/
+
 void PlayerInputs::update(Player* parent, World* world) {
 
-	// Some things
+	parent->physics->resetMovement();
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		parent->graphics->shape->setPosition(0, 0);
+		parent->physics->moveTop();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		parent->physics->moveBottom();
 	}
 }
