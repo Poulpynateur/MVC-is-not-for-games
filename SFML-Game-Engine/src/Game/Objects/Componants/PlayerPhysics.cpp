@@ -5,12 +5,8 @@
 void PlayerPhysics::update(Player* parent, World* world) {
 	position += movement;
 	parent->graphics->setPixelPosition(position);
-	parent->graphics->setPixelPosition(movement);
+	parent->graphics->setPixelMovement(movement);
 };
-
-sf::Vector2f& PlayerPhysics::getPosition() {
-	return position;
-}
 
 /** Movement **/
 

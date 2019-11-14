@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include <iostream>
 
-template <typename ComponentInputs, typename ComponentPhysics, typename ComponentGraphics>
+template <typename Parent, typename ComponentInputs, typename ComponentPhysics, typename ComponentGraphics>
 struct Object : public Entity {
 
 	ComponentInputs* inputs;
@@ -24,8 +24,8 @@ struct Object : public Entity {
 	};
 
 	void update(World* world) {
-		inputs->update(this, world);
-		physics->update(this, world);
-		graphics->update(this);
+		inputs->update(static_cast<Parent*>(this), world);
+		physics->update(static_cast<Parent*>(this), world);
+		graphics->update(static_cast<Parent*>(this));
 	};
 };

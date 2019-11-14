@@ -6,6 +6,7 @@
 #include "Componants/PlayerPhysics.h"
 #include "Componants/PlayerGraphics.h"
 
-class Player : public Object <PlayerInputs, PlayerPhysics, PlayerGraphics> {
+class Player : public Object <Player, PlayerInputs, PlayerPhysics, PlayerGraphics> {
+	//For constructor
 	using Object::Object;
 };

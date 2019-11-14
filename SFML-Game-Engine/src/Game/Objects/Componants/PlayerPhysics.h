@@ -8,13 +8,11 @@ class PlayerPhysics {
 	sf::Vector2f position;
 	sf::Vector2f movement;
 
-	float speed = 1;
+	float speed = 10;
 
 public:
 
 	void update(Player* parent, World* world);
-
-	sf::Vector2f& getPosition();
 
 	void resetMovement();
 	void moveRight();
