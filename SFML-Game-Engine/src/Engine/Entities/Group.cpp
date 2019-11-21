@@ -20,7 +20,7 @@ void Group::draw(sf::RenderWindow& render, float interpolation) {
 		childrens[i]->draw(render, interpolation);
 	}
 }
-void Group::update(World* world) {
+void Group::update(IWorld* world) {
 	for (unsigned int i = 0; i < childrens.size(); i++) {
 		childrens[i]->update(world);
 

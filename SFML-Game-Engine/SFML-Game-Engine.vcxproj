@@ -30,8 +30,11 @@
     <ClCompile Include="src\Engine\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Game\Objects\Componants\PlayerInputs.h" />
     <ClInclude Include="src\Engine\Entities\Object.h" />
+    <ClInclude Include="src\Engine\Entities\Components\ComponentGraphics.h" />
+    <ClInclude Include="src\Engine\Entities\Components\ComponentPhysics.h" />
+    <ClInclude Include="src\Engine\Entities\Components\ComponentInputs.h" />
+    <ClInclude Include="src\Game\Objects\Componants\PlayerInputs.h" />
     <ClInclude Include="src\Game\Objects\Componants\PlayerGraphics.h" />
     <ClInclude Include="src\Game\Objects\Componants\PlayerPhysics.h" />
     <ClInclude Include="src\Game\Objects\Player.h" />

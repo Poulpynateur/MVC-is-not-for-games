@@ -6,7 +6,7 @@
 	Define the very basic of elements of the game
 */
 
-class World;
+class IWorld;
 
 class Entity {
 protected:
@@ -20,5 +20,5 @@ public:
 	bool isDismised();
 
 	virtual void draw(sf::RenderWindow& render, float interpolation) = 0;
-	virtual void update(World* world) = 0;
+	virtual void update(IWorld* world) = 0;
 };

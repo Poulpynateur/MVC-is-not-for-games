@@ -4,7 +4,7 @@
 
 /**** METHODS ****/
 
-void PlayerInputs::update(Player* parent, World* world) {
+void PlayerInputs::update(Player* parent, IWorld* world) {
 
 	parent->physics->resetMovement();
 

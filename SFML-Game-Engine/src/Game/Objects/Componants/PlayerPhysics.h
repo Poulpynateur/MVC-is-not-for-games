@@ -3,20 +3,11 @@
 #include "../../EngineInclude.h"
 
 class Player;
-class PlayerPhysics {
-
-	sf::Vector2f position;
-	sf::Vector2f movement;
-
-	float speed = 10;
+class PlayerPhysics : public ComponentPhysics<Player> {
 
 public:
 
-	void update(Player* parent, World* world);
+	PlayerPhysics();
 
-	void resetMovement();
-	void moveRight();
-	void moveLeft();
-	void moveTop();
-	void moveBottom();
+	void update(Player* parent, IWorld* world) override;
 };

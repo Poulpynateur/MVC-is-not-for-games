@@ -3,9 +3,7 @@
 #include "../../EngineInclude.h"
 
 class Player;
-class PlayerInputs {
-
+class PlayerInputs : public ComponentInputs<Player> {
 public:
-
-	void update(Player* parent, World* world);
+	void update(Player* parent, IWorld* world) override;
 };

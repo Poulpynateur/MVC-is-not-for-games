@@ -9,7 +9,14 @@
 #include "Entities/Group.h"
 #include "Layer.h"
 
-class World {
+//Object access interface
+class IWorld {
+public:
+	virtual std::vector<Group*>& getLayers() = 0;
+	virtual void addEntity(Layer target_layer, Entity* entity) = 0;
+};
+
+class World : public IWorld{
 private:
 	sf::Int32 clock;
 

@@ -2,21 +2,14 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../../../Engine/Entities/Components/ComponentGraphics.h"
+
 class Player;
-class PlayerGraphics {
-
-	sf::RectangleShape* shape;
-
-	sf::Vector2f pixelPosition;
-	sf::Vector2f pixelMovement;
+class PlayerGraphics : public ComponentGraphics<Player> {
 
 public:
 	
 	PlayerGraphics();
 
-	void setPixelPosition(sf::Vector2f pos);
-	void setPixelMovement(sf::Vector2f mov);
-
-	void update(Player* parent);
-	sf::Shape& refresh(float interpolation) const;
+	void update(Player* parent) override;
 };

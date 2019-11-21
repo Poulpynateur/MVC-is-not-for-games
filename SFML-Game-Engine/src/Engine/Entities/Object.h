@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Entity.h"
-#include <iostream>
+
+#include "Components/ComponentInputs.h"
+#include "Components/ComponentPhysics.h"
+#include "Components/ComponentGraphics.h"
 
 template <typename Parent, typename ComponentInputs, typename ComponentPhysics, typename ComponentGraphics>
 struct Object : public Entity {
@@ -23,7 +26,7 @@ struct Object : public Entity {
 		render.draw(graphics->refresh(interpolation));
 	};
 
-	void update(World* world) {
+	void update(IWorld* world) {
 		inputs->update(static_cast<Parent*>(this), world);
 		physics->update(static_cast<Parent*>(this), world);
 		graphics->update(static_cast<Parent*>(this));
